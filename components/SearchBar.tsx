@@ -1,4 +1,4 @@
-import { Image, TextInput, View } from 'react-native';
+import { Image, TextInput, View, StyleSheet } from 'react-native';
 import React from 'react';
 import { icons } from '@/constants/icons';
 
@@ -10,21 +10,42 @@ interface Props {
 
 const SearchBar = ({ placeholder, value, onChangeText }: Props) => {
     return (
-        <View className="flex-row items-center bg-dark-200 rounded-full px-5 py-3">
+        <View style={styles.container}>
             <Image
                 source={icons.search}
-                style={{ width: 20, height: 20, tintColor: '#AB8BFF' }}
+                style={styles.icon}
                 resizeMode="contain"
             />
             <TextInput
-                placeholder="Search"
+                placeholder={placeholder}
                 value={value}
                 onChangeText={onChangeText}
-                className="flex-1 ml-2 text-white"
+                style={styles.input}
                 placeholderTextColor="#a8b5db"
             />
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#1E1E1E', // assuming "bg-dark-200"
+        borderRadius: 9999, // full rounded (rounded-full)
+        paddingHorizontal: 20, // px-5
+        paddingVertical: 12, // py-3
+    },
+    icon: {
+        width: 20,
+        height: 20,
+        tintColor: '#AB8BFF',
+    },
+    input: {
+        flex: 1,
+        marginLeft: 8, // ml-2
+        color: 'white',
+    },
+});
 
 export default SearchBar;
